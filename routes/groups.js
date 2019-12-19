@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const validateGroup = require('../validation/group');
 // model
 const Group = require('../models/Group');
 
@@ -9,7 +9,11 @@ router.get('/get', (req, res) => {
 });
 router.post('/add', (req, res) => {
 	// console.log(req.body);
-	console.log('hmmm groppspspspspspps');
+
+	const { errors, isValid } = validateGroup(req.body);
+	if (!isValid) {
+		return res.send(errors);
+	}
 	Group.findOne({ name: req.body.name }).then((data) => {
 		if (data) {
 			res.send({ message: 'group already present by the name' });

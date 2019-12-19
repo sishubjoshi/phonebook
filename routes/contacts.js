@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
+const validateContact = require('../validation/contact');
+const isEmpty = require('../validation/isEmpty');
 // model
 const Contact = require('../models/Contact');
 
@@ -33,21 +34,29 @@ router.get('/:c_id', (req, res) => {
  * @description Adds a new contact
  */
 router.post('/add', (req, res) => {
-	// res.send(req.body);
-	// const data = req.body.name;
-	// console.log(data);
+	const { errors, isValid } = validateContact(req.body);
+
+	if (!isValid) {
+		return res.send(errors);
+	}
 	Contact.findOne({ name: req.body.name }).then((contact) => {
-		console.log('eeeeeeeeeee');
+		// console.log('eeeeeeeeeee');
 		if (contact) {
-			res.send('numebr already exists');
+			return res.send('name already exists');
 		} else {
-			const newContact = new Contact({
-				number: req.body.number,
-				name: req.body.name
+			Contact.findOne({ number: req.body.number }).then((cc) => {
+				if (cc) {
+					return res.send('number already exists');
+				}
+				const newContact = new Contact({
+					number: req.body.number,
+					name: req.body.name
+				});
+				newContact.save().then((contact) => res.json(contact)).catch((err) => console.log(err));
 			});
-			newContact.save().then((contact) => res.json(contact)).catch((err) => console.log(err));
 		}
 	});
+
 	// res.send(req.body);
 });
 
@@ -56,9 +65,35 @@ router.post('/add', (req, res) => {
  * @description Updates contact
  */
 router.put('/update/:c_id', (req, res) => {
-	Contact.findOneAndUpdate({ _id: req.params.c_id }, req.body)
-		.then((contact) => res.json(contact))
-		.catch((err) => console.log(err));
+	const { errors, isValid } = validateContact(req.body);
+	console.log(errors);
+	if (!isValid) {
+		return res.send(errors);
+	}
+	Contact.findOne({ name: req.body.name }).then((contact) => {
+		if (contact && contact._id != req.params.c_id) {
+			console.log(contact._id, 'hmmmmmmmm', req.params.c_id, contact._id !== req.params.c_id);
+			errors.name = 'same name is already present';
+			return res.send(errors);
+			// return res.send({ message: 'name is already present' });
+		}
+		Contact.findOne({ number: req.body.number }).then((contact) => {
+			if (contact && contact._id != req.params.c_id) {
+				errors.number = 'number is associated with another contact';
+				return res.send(errors);
+			}
+		});
+		// console.log(contact._id == req.params.c_id);
+	});
+
+	// console.log(errors.name);
+	if (isEmpty(errors)) {
+		Contact.findOneAndUpdate({ _id: req.params.c_id }, req.body)
+			.then((contact) => res.json(contact))
+			.catch((err) => console.log(err));
+	} else {
+		return res.send(errors);
+	}
 });
 
 /**

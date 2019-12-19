@@ -12,3 +12,7 @@ Tasks to do:
 * Implement Validation
 * Implement groups(CRUD)
 * Use a front-end Framework
+
+
+
+

@@ -5,11 +5,13 @@ const Schema = mongoose.Schema;
 const ContactSchema = new Schema({
 	number: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	name: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	nickname: {
 		type: String

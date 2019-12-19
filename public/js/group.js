@@ -1,9 +1,9 @@
 class Group {
 	constructor() {
-		// this.base_url = 'http://localhost:5000/contacts';
-		this.base_url = 'https://demoo-joshi.herokuapp.com/contacts';
-		// this.group_url = 'http://localhost:5000/groups';
-		this.group_url = 'https://demoo-joshi.herokuapp.com/groups';
+		this.base_url = 'http://localhost:5000/contacts';
+		// this.base_url = 'https://demoo-joshi.herokuapp.com/contacts';
+		this.group_url = 'http://localhost:5000/groups';
+		// this.group_url = 'https://demoo-joshi.herokuapp.com/groups';
 		this.contact_list = [];
 		this.contactSearch = document.getElementById('contactSearch');
 		this.contactDisplay = document.querySelector('.list-contact');
