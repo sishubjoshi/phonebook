@@ -32,4 +32,8 @@ app.get('/groups', (req, res, next) => {
 app.use('/groups', group);
 app.use('/contacts', contact);
 
-app.listen(5000);
+// app.listen(5000);
+
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`server running on port ${port}`));
