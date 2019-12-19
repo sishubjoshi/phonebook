@@ -37,16 +37,16 @@ router.post('/add', (req, res) => {
 	const { errors, isValid } = validateContact(req.body);
 
 	if (!isValid) {
-		return res.send(errors);
+		return res.json({ errors });
 	}
 	Contact.findOne({ name: req.body.name }).then((contact) => {
 		// console.log('eeeeeeeeeee');
 		if (contact) {
-			return res.send('name already exists');
+			return res.json({ name: 'name already exists' });
 		} else {
 			Contact.findOne({ number: req.body.number }).then((cc) => {
 				if (cc) {
-					return res.send('number already exists');
+					return res.json({ number: 'number already exists' });
 				}
 				const newContact = new Contact({
 					number: req.body.number,

@@ -62,7 +62,7 @@ app.addButton.addEventListener('click', () => {
 // 	app.getGroups();
 // });
 app.submit.addEventListener('click', (e) => {
-	// e.preventDefault();
+	e.preventDefault();
 	console.log(typeof app.number.value);
 	if (app.name.value !== '' && app.number.value !== '') {
 		if (app.add) {

@@ -11,7 +11,7 @@ class Api {
 		const fetchContacts = await fetch(`${this.base_url}/contacts`);
 		const contacts = await fetchContacts.json();
 		// JSON.stringify()
-		console.log(contacts);
+		if (contacts.errors) console.log(contacts);
 		return {
 			contacts
 		};
@@ -38,6 +38,7 @@ class Api {
 			})
 		});
 		const newContact = await contacts.json();
+		if (newContact.errors) console.log(newContact.errors);
 		console.log(newContact);
 		return {
 			newContact
