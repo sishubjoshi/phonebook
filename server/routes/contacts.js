@@ -9,13 +9,23 @@ const Contact = require('../models/Contact');
  * @description Gets the list of all contacts
  */
 router.get('/', (req, res) => {
+	console.log('get em all');
 	Contact.find().then((contacts) => {
 		if (contacts) {
-			res.json(contacts);
+			res.send(contacts);
 		} else {
-			res.send('hmmm no');
+			res.send({ message: 'no notes added yet.' });
 		}
 	});
+});
+
+router.get('/:c_id', (req, res) => {
+	Contact.findOne({ _id: req.params.c_id })
+		.then((contact) => {
+			// const cont = contact
+			res.send(contact);
+		})
+		.catch((err) => console.log(err));
 });
 
 /**
@@ -41,14 +51,26 @@ router.post('/add', (req, res) => {
 });
 
 /**
+ * @route UPDATE /contacts/update
+ * @description Updates contact
+ */
+router.put('/update/:c_id', (req, res) => {
+	Contact.findOneAndUpdate({ _id: req.params.c_id }, req.body)
+		.then((contact) => res.json(contact))
+		.catch((err) => console.log(err));
+});
+
+/**
  * @route DELETE /contacts/delete
  * @description deleted the contact if already present
  */
 
-router.delete('/delete', (req, res) => {
-	Contact.findOneAndDelete({ number: req.body.number })
-		.then((contact) => res.send('removed'))
+router.delete('/delete/:c_id', (req, res) => {
+	Contact.findOneAndDelete({ _id: req.params.c_id })
+		.then((contact) => res.json({ message: 'contact removed' }))
 		.catch((err) => console.log(err));
+	// console.log(req.params.c_id);
+	// res.send('hmm');
 });
 
 module.exports = router;
