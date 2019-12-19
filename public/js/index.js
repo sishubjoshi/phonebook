@@ -52,10 +52,18 @@ app.addButton.addEventListener('click', () => {
 	(app.name.value = ''), (app.number.value = ''), (app.nickname.value = '');
 });
 
+// app.number.addEventListener('blur', (e) => {
+// 	const num = app.number.value;
+// 	if (num.length !== 10) {
+// 		app.number.classList.add('is-invalid');
+// 	} else app.number.classList.remove('is-invalid');
+// });
 // app.groupButton.addEventListener('click', () => {
 // 	app.getGroups();
 // });
 app.submit.addEventListener('click', (e) => {
+	// e.preventDefault();
+	console.log(typeof app.number.value);
 	if (app.name.value !== '' && app.number.value !== '') {
 		if (app.add) {
 			const contact = {
@@ -64,15 +72,17 @@ app.submit.addEventListener('click', (e) => {
 				nickname: app.nickname.value
 			};
 
-			api.addContact(contact).then((data) => app.getData());
+			api.addContact(contact).then((data) => app.getData()).catch((err) => console.log(err));
+			// document.getElementById('close-modal').click();
 		} else {
 			const contact = {
 				name: app.name.value,
-				number: app.number.value,
+				number: String(app.number.value),
 				nickname: app.nickname.value
 			};
 			api.updateContact(app.c_id, contact).then((data) => app.getData());
 			app.add = true;
+			// document.getElementById('close-modal').click();
 		}
 	}
 });

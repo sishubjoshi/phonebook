@@ -26,6 +26,7 @@ class Api {
 	}
 
 	async addContact(contact) {
+		console.log('ccccccccccccc');
 		const contacts = await fetch(`${this.base_url}/contacts/add`, {
 			method: 'POST',
 			headers: {
@@ -33,8 +34,7 @@ class Api {
 			},
 			body: JSON.stringify({
 				name: contact.name,
-				number: contact.number,
-				nickname: contact.nickname
+				number: contact.number
 			})
 		});
 		const newContact = await contacts.json();

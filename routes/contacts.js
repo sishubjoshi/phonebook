@@ -36,7 +36,8 @@ router.post('/add', (req, res) => {
 	// res.send(req.body);
 	// const data = req.body.name;
 	// console.log(data);
-	Contact.findOne({ number: req.body.number }).then((contact) => {
+	Contact.findOne({ name: req.body.name }).then((contact) => {
+		console.log('eeeeeeeeeee');
 		if (contact) {
 			res.send('numebr already exists');
 		} else {
