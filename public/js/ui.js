@@ -10,7 +10,7 @@ class UI {
 		if (contacts.message) {
 			output += `<div class="container">
                             <div class="card card-body">
-                                <p class="lead ">Notes not added yet.</p>
+                                <p class="lead ">contacts not added yet.</p>
                             </div>
                         </div> `;
 			this.contact_area.innerHTML = output;
@@ -28,14 +28,44 @@ class UI {
                                         <i class="fas fa-times" style="font-size:20px;cursor:pointer" id="deleteButton" onclick = "app.deleteContact('${contact._id}')"></i>
                                     </div>
                                 </div>
-                                <p>${contact.number}</p>
-                                <i class="fas fa-pencil" style="font-size:18px"></i>    
                             </div>
                         `;
 			});
 
 			this.contact_area.innerHTML = output;
 			// console.log(output);
+		}
+	}
+
+	displayGroups(groups) {
+		console.log(groups.groups);
+		let output = '';
+
+		if (groups.message) {
+			output += `<div class="container">
+                            <div class="card card-body">
+                                <p class="lead ">groups not added yet.</p>
+                            </div>
+                        </div> `;
+			this.contact_area.innerHTML = output;
+		} else {
+			groups.groups.forEach((group) => {
+				// console.log(contact._id);
+				output += `
+                            <div class="card card-body m-2" key=${group._id} >
+                                <div class="row align-items-start">
+                                    <div class="col-8">
+                                        <p class="lead">${group.name}</p>
+                                    </div>
+                                    <div class="col-auto">
+                                        ${group.members}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+			});
+
+			this.contact_area.innerHTML = output;
 		}
 	}
 }

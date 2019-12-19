@@ -15,50 +15,61 @@
 
 </head>
 
-<body onload="onLoad()">
-
+<body class="" onload="onLoad()">
     <nav class="navbar bg-dark">
         <div class="container">
-            <p class="h3 text-warning">PhoneBook</p>
-            <button type="button" class="btn btn-warning" data-toggle="modal" id="addButton"
-                data-target="#addNoteModal">New Contact</button>
+            <p class="h3 text-warning"><a href="/">PhoneBook</a></p>
+            <button type="button" class="btn btn-warning" data-toggle="modal" id="addGroup"
+                data-target="#addMembersModal">New Group</button>
+        </div>
     </nav>
+
+    <!-- 
+    <div class="container m-4">
+
+    </div> -->
+
+
+
 
 
     <!-- modal -->
-    <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="addMembersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="text-center p-2">
-                    <p class="h3" id="exampleModalLabel">Add Contact</h5>
-                        <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close">
+                    <p class="h3" id="exampleModalLabel">Create Group</h5>
+                        <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close"
+                            id="close-modal">
                             <span aria-hidden="true"><i class="fas fa-times"></i></span>
                         </button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="name-text" placeholder="Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="number-text" placeholder="Phone Number"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="nickname-text" placeholder="Nickname if any">
-                        </div>
-
-                        <input type="Submit" value="Submit" id="contact-submit" class="btn btn-success btn-block"
-                            data-dismiss="modal">
+                        <label for="group-name">Group Name</label>
+                        <input type="text" name="group-name" id="groupName" class="form-control" required>
+                        <label for="contact-search"> Search Members</label>
+                        <input type="text" name="contact-search" id="contactSearch" class="form-control">
+                        <input type="Submit" value="Submit" id="group-submit" class="btn btn-success btn-block mt-2">
                     </form>
+                    <hr>
+                    <p class="h3">Contact List</p>
+                    <div class="list-contact">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+
                 </div>
             </div>
         </div>
     </div>
     </div>
 
-    <div class=" container mt-5 contacts">
+
+    <p class="h2">Groups</p>
+    <div class=" container mt-5 groups">
 
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -74,7 +85,7 @@
 
     <script src="./js/api.js"></script>
     <script src="./js/ui.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./js/group.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,9 @@
 class Api {
 	constructor() {
-		this.base_url = 'http://localhost:5000';
+		// this.base_url = 'http://localhost:5000';
+		this.base_url = 'https://demoo-joshi.herokuapp.com';
+		this.groups_url = 'https://demoo-joshi.herokuapp.com/groups';
+		// this.groups_url = 'http://localhost:5000/groups';
 	}
 
 	async getContacts() {
@@ -64,6 +67,16 @@ class Api {
 		console.log(newContact);
 		return {
 			newContact
+		};
+	}
+
+	async getGroups() {
+		const fetchGroups = await fetch(`${this.groups_url}`);
+		const groups = await fetchGroups.json();
+		// JSON.stringify()
+		console.log(groups);
+		return {
+			groups
 		};
 	}
 }

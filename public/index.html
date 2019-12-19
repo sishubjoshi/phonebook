@@ -15,14 +15,20 @@
 
 </head>
 
-<body onload="onLoad()">
+<body onload="onLoad()" class="bg-warning">
 
     <nav class="navbar bg-dark">
         <div class="container">
             <p class="h3 text-warning">PhoneBook</p>
-            <button type="button" class="btn btn-warning" data-toggle="modal" id="addButton"
-                data-target="#addNoteModal">New Contact</button>
+            <div>
+                <button type="button" class="btn btn-warning" data-toggle="modal" id="addButton"
+                    data-target="#addNoteModal">New Contact</button>
+                <a type="button" class="btn btn-warning" href="/groups">Groups</a>
+            </div>
+
+        </div>
     </nav>
+
 
 
     <!-- modal -->
@@ -57,6 +63,37 @@
         </div>
     </div>
     </div>
+
+
+    <!-- modal -->
+    <div class="modal fade" id="deleteContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="text-center p-2">
+                    <p class="h3" id="exampleModalLabel">Are you sure</h5>
+                        <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                    <button type="button" class="close p-2" onclick="onCheck()">
+                        <span aria-hidden="true"><i class="fas fa-check"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
 
     <div class=" container mt-5 contacts">
 
