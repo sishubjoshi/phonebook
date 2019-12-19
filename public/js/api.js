@@ -1,9 +1,9 @@
 class Api {
 	constructor() {
-		this.base_url = 'http://localhost:5000';
-		// this.base_url = 'https://demoo-joshi.herokuapp.com';
-		// this.groups_url = 'https://demoo-joshi.herokuapp.com/groups';
-		this.groups_url = 'http://localhost:5000/groups';
+		// this.base_url = 'http://localhost:5000';
+		this.base_url = 'https://demoo-joshi.herokuapp.com';
+		this.groups_url = 'https://demoo-joshi.herokuapp.com/groups';
+		// this.groups_url = 'http://localhost:5000/groups';
 	}
 
 	async getContacts() {
